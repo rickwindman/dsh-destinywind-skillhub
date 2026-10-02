@@ -1,0 +1,60 @@
+{
+  "name": "dsh-destinywind-skillhub",
+  "version": "1.0.0",
+  "description": "DSH Web plugin for managing local DSH skills and discovering Agent skills from other agent homes (Trae CN, WorkBuddy). Other agents' skills are read-only and can only be copied into the DSH skill library by explicit user action.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rickwindman/dsh-destinywind-skillhub.git"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-workspace"
+      ],
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "test": "node test/core-test.mjs && node test/locale-test.mjs && node test/external-import-test.mjs"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": ">=4.0.1 <5.0.0",
+    "@deepseek-ai/dsh-client-runtime": ">=0.1.0-rc.0 <0.2.0",
+    "@deepseek-ai/dsh-client-ui-slots": ">=0.1.0-rc.0 <0.2.0",
+    "@deepseek-ai/dsh-client-locale": ">=0.1.0-rc.0 <0.2.0",
+    "@deepseek-ai/dsh-host-webserver": ">=0.1.0-rc.5 <0.2.0",
+    "@deepseek-ai/dsh-skill": ">=0.1.0-rc.5 <0.2.0",
+    "@deepseek-ai/dsh-client-ui-workspace": ">=0.1.0-rc.5 <0.2.0",
+    "react": "^18.2.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "skill",
+    "skills",
+    "skillhub",
+    "cordis"
+  ]
+}
