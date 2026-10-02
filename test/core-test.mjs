@@ -150,7 +150,11 @@ if (process.platform !== "win32") {
 // ── 客户端装配约束 ──
 // 客户端 bundle 由宿主 AMD 加载，无法在零依赖测试中直接挂载；仅保留协议常量锚点。
 const clientSource = await readFile(new URL("../lib/client.js", import.meta.url), "utf8");
-ok(clientSource.includes('id: "@deronghe/dsh-skills-manager"'), "client registers the scoped package module ID");
+// 宿主 client-modules 加载器强制要求：client 模块 id 必须等于 package.json 的 name。
+// 两者不一致时 bundle 的客户端半边会被拒绝装载，整份插件随之启动失败。
+const pkgManifest = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
+const clientModuleId = /id:\s*"([^"]+)"/.exec(clientSource)?.[1];
+ok(clientModuleId === pkgManifest.name, `client module id matches package name (${String(clientModuleId)})`);
 ok(clientSource.includes('"x-dsh-skills-manager": "1"'), "client sends the mutation request marker");
 ok(clientSource.includes('className: "dssm-modal dssm-modal-upload"'), "upload dialog uses the adaptive modal class");
 ok(clientSource.includes('.dssm-modal{box-sizing:border-box;display:flex;width:min(480px,100%)!important;height:auto!important;'), "all plugin dialogs stay compact against host stretch");
