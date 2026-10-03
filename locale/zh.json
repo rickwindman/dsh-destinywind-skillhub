@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "技能",
+    "description": "管理本机 DSH 技能库，并可发现其他 Agent 家庭（Trae CN、WorkBuddy）的技能；外部技能只读，需用户确认后才能复制进 DSH 技能库。"
+  }
+}

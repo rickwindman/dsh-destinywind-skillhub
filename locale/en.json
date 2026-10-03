@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Skills",
+    "description": "Manage local DSH skills and discover Agent skills from other agent homes (Trae CN, WorkBuddy); external skills are read-only and can only be copied into the DSH skill library by explicit user action."
+  }
+}

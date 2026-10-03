@@ -1,6 +1,6 @@
 {
   "name": "dsh-destinywind-skillhub",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "DSH Web plugin for managing local DSH skills and discovering Agent skills from other agent homes (Trae CN, WorkBuddy). Other agents' skills are read-only and can only be copied into the DSH skill library by explicit user action.",
   "license": "Apache-2.0",
   "repository": {
@@ -12,10 +12,12 @@
   "exports": {
     ".": "./lib/index.js",
     "./client": "./lib/client.js",
+    "./locale/*.json": "./locale/*.json",
     "./package.json": "./package.json"
   },
   "files": [
     "lib",
+    "locale",
     "cordis.patch.yml"
   ],
   "dsh": {
